@@ -4,15 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Linear/Sources/number.cpp \
 ../Linear/Sources/vector.cpp 
 
 CPP_DEPS += \
-./Linear/Sources/number.d \
 ./Linear/Sources/vector.d 
 
 OBJS += \
-./Linear/Sources/number.o \
 ./Linear/Sources/vector.o 
 
 
@@ -28,7 +25,7 @@ Linear/Sources/%.o: ../Linear/Sources/%.cpp Linear/Sources/subdir.mk
 clean: clean-Linear-2f-Sources
 
 clean-Linear-2f-Sources:
-	-$(RM) ./Linear/Sources/number.d ./Linear/Sources/number.o ./Linear/Sources/vector.d ./Linear/Sources/vector.o
+	-$(RM) ./Linear/Sources/vector.d ./Linear/Sources/vector.o
 
 .PHONY: clean-Linear-2f-Sources
 

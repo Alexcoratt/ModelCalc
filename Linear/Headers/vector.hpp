@@ -9,41 +9,50 @@
 #define VECTOR_HPP_
 
 #include <cctype>
-#include "number.hpp"
 
 using namespace std;
 
 struct Vector {
-	// Constructors
-	explicit Vector(size_t);
-	Vector(size_t, Number *);
-
-	// Copying
-	Vector(Vector &);
-
-	// Assigning
-	Vector & operator=(Vector const &);
-
-	// Destructor
-	~Vector();
-
-	// Methods
-
-	// Getting
-	Number & get(size_t);
-	Number get(size_t) const;
-
-	size_t const length() const;
-
-	// Setting
-	void swap(Vector &);
-	void resize(size_t);
-
 	private:
 		// Fields
 		size_t size_;
-		Number * values_;
+		double * values_;
 
+	public:
+		// Constructors
+		explicit Vector(size_t);
+		Vector(size_t, double *);
+
+		// Copying
+		Vector(Vector &);
+
+		// Assigning
+		Vector & operator=(Vector const &);
+
+		// Destructor
+		~Vector();
+
+		// Methods
+
+		// Getting
+		double & get(size_t);
+		double get(size_t) const;
+
+		size_t const size() const;
+
+		// Setting
+		void swap(Vector &);
+		void resize(size_t);
+
+		// Math methods
+		double operator*(Vector const &) const;
+
+		Vector operator+(Vector const &) const;
+		Vector operator-(Vector const &) const;
+
+		Vector crossProduct(Vector const &) const;
+
+		double length() const;
 };
 
 
