@@ -10,11 +10,16 @@
 #include <cctype>
 #include <stdexcept>
 #include <cmath>
+#include <algorithm>
+#include <sstream>
 
 using namespace std;
 
 // Constructors
-Vector::Vector(size_t size) : size_(size), values_(new double[size]) {}
+Vector::Vector(size_t size) : size_(size), values_(new double[size]) {
+	for (size_t i = 0; i < size_; i++)
+		values_[i] = 0;
+}
 Vector::Vector(size_t size, double * values) : size_(size), values_(values) {}
 
 // Copying
@@ -24,10 +29,10 @@ Vector::Vector(Vector & other) : size_(other.size_), values_(new double[size_]){
 }
 
 // Assigning
-Vector & Vector::operator=(Vector const & other) {
+Vector & Vector::operator=(Vector & other) {
 	if (this != &other) {
-		size_ = other.size_;
-		Vector(size_).swap(*this);
+		Vector tmp(other);
+		swap(tmp);
 	}
 	return *this;
 }
@@ -35,6 +40,7 @@ Vector & Vector::operator=(Vector const & other) {
 //Destructor
 Vector::~Vector() {
 	delete [] values_;
+	values_ = 0;
 }
 
 // Methods
@@ -43,17 +49,20 @@ Vector::~Vector() {
 double & Vector::get(size_t index) {return values_[index];}
 double Vector::get(size_t index) const {return values_[index];}
 
-size_t const Vector::size() const {return size_;}
+size_t const Vector::getSize() const {return size_;}
+
+stringstream Vector::toSStream() const {
+	stringstream result;
+	for (size_t i = 0; i < size_ - 1; i++)
+		result << values_[i] << '\t';
+	result << values_[size_ - 1];
+	return result;
+}
 
 // Setting
 void Vector::swap(Vector & other) {
-	size_t const tmpSize = size_;
-	size_ = other.size_;
-	other.size_ = tmpSize;
-
-	double * const tmpValues = values_;
-	values_ = other.values_;
-	other.values_ = tmpValues;
+	std::swap(size_, other.size_);
+	std::swap(values_, other.values_);
 }
 
 void Vector::resize(size_t newSize) {

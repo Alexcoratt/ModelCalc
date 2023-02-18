@@ -9,6 +9,7 @@
 #define VECTOR_HPP_
 
 #include <cctype>
+#include <sstream>
 
 using namespace std;
 
@@ -27,18 +28,18 @@ struct Vector {
 		Vector(Vector &);
 
 		// Assigning
-		Vector & operator=(Vector const &);
+		Vector & operator=(Vector &);
 
 		// Destructor
 		~Vector();
-
-		// Methods
 
 		// Getting
 		double & get(size_t);
 		double get(size_t) const;
 
-		size_t const size() const;
+		size_t const getSize() const;
+
+		stringstream toSStream() const;
 
 		// Setting
 		void swap(Vector &);

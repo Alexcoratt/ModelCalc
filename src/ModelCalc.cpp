@@ -8,6 +8,7 @@
 
 
 #include "vector.hpp"
+#include "matrix.hpp"
 #include <cctype>
 #include <iostream>
 
@@ -17,17 +18,28 @@ using namespace std;
 int main() {
 	size_t size = 10;
 	Vector nums(size);
-	nums.get(3) = 10;
-	for (size_t i = 0; i < size; i++)
-		cout << nums.get(i) << endl;
+	nums.get(0) = 10;
+	cout << nums.toSStream().str() << endl;
+
+	nums.resize(3);
+	size = nums.getSize();
+	nums.get(1) = -2;
+	cout << nums.toSStream().str() << endl;
+
 	cout << endl;
 
-	nums.resize(5);
-	size = nums.size();
-	nums.get(1) = -2;
-	for (size_t i = 0; i < nums.size(); i++)
-		cout << nums.get(i) << endl;
+	Matrix mx(3, 3);
+	cout << mx.toSStream().str() << endl << endl;
 
-	cout << nums.get(1) + nums.get(3);
+	mx.get(1, 1) = -2.3;
+	cout << mx.toSStream().str() << endl << endl;
+
+	mx.insertRow(nums); // @suppress("Ambiguous problem")
+	cout << mx.toSStream().str() << endl << endl;
+
+	mx.deleteRow(2); // @suppress("Ambiguous problem")
+	mx.deleteCol(1);
+	cout << mx.toSStream().str() << endl << endl;
+
 	return 0;
 }

@@ -10,6 +10,7 @@
 
 #include <cctype>
 #include "vector.hpp"
+#include <sstream>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ struct Matrix {
 		// Fields
 		size_t height_;
 		size_t width_;
-		double * values;
+		double * values_;
 
 	public:
 		// Constructors
@@ -37,29 +38,42 @@ struct Matrix {
 		Vector getRow(size_t) const;
 		Vector getCol(size_t) const;
 
+		size_t getHeight() const;
+		size_t getWidth() const;
+
+		stringstream toSStream() const;
+
 		// Setting
 		void resize(size_t, size_t);
 
-		void insertRow(Vector &, size_t = height_);
-		void insertCol(Vector &, size_t = width_);
+		void insertRow(Vector &);
+		void insertRow(Vector &, size_t);
 
-		Vector popRow(size_t = height_);
-		Vector popCol(size_t = width_);
+		void insertCol(Vector &);
+		void insertCol(Vector &, size_t);
+
+		void deleteRow();
+		void deleteRow(size_t);
+
+		void deleteCol();
+		void deleteCol(size_t);
+
+		void swap(Matrix &);
 
 		// Math methods
 		Matrix operator*(Matrix const &) const;
-		Matrix operator*(double const) const;
-		Matrix operator*(Vector const &) const;
+		Matrix operator*(double) const;
+		Matrix operator*(Vector &) const;
 
-		Matrix operator/(Matrix const &) const;
-		Matrix operator/(double const) const;
-		Matrix operator/(Vector const &) const;
+		Matrix operator/(Matrix &) const;
+		Matrix operator/(double) const;
+		Matrix operator/(Vector &) const;
 
-		Matrix operator+(Matrix const &) const;
-		Matrix operator+(double const) const;
+		Matrix operator+(Matrix &) const;
+		Matrix operator+(double) const;
 
-		Matrix operator-(Matrix const &) const;
-		Matrix operator-(double const) const;
+		Matrix operator-(Matrix &) const;
+		Matrix operator-(double) const;
 
 		Matrix transposed() const;
 
