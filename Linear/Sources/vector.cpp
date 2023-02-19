@@ -12,6 +12,7 @@
 #include <cmath>
 #include <algorithm>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -49,14 +50,14 @@ Vector::~Vector() {
 double & Vector::get(size_t index) {return values_[index];}
 double Vector::get(size_t index) const {return values_[index];}
 
-size_t const Vector::getSize() const {return size_;}
+size_t Vector::getSize() const {return size_;}
 
-stringstream Vector::toSStream() const {
+string Vector::toString() const {
 	stringstream result;
 	for (size_t i = 0; i < size_ - 1; i++)
 		result << values_[i] << '\t';
 	result << values_[size_ - 1];
-	return result;
+	return result.str();
 }
 
 // Setting
@@ -106,12 +107,13 @@ Vector Vector::operator-(Vector const & other) const {
 		return result;
 }
 
-/*
-Vector Vector::crossProduct(Vector const & other) const {
-
-}
-*/
-
 double Vector::length() const {
 	return(std::sqrt(*this * *this));
+}
+
+double Vector::sum() const {
+	double res = 0;
+	for (size_t i = 0; i < size_; i++)
+		res += values_[i];
+	return res;
 }

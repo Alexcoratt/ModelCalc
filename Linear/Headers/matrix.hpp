@@ -11,6 +11,7 @@
 #include <cctype>
 #include "vector.hpp"
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -27,9 +28,11 @@ struct Matrix {
 		// Destructor
 		~Matrix();
 		// Copying
-		explicit Matrix(Matrix &);
+		Matrix(Matrix const &);
+		Matrix(Matrix const *);
 		// Assigning
-		Matrix & operator=(Matrix &);
+		Matrix & operator=(Matrix const &);
+		Matrix * operator=(Matrix const *);
 
 		// Getting
 		double & get(size_t, size_t);
@@ -41,16 +44,16 @@ struct Matrix {
 		size_t getHeight() const;
 		size_t getWidth() const;
 
-		stringstream toSStream() const;
+		string toString() const;
 
 		// Setting
 		void resize(size_t, size_t);
 
-		void insertRow(Vector &);
-		void insertRow(Vector &, size_t);
+		void insertRow(Vector const &);
+		void insertRow(Vector const &, size_t);
 
-		void insertCol(Vector &);
-		void insertCol(Vector &, size_t);
+		void insertCol(Vector const &);
+		void insertCol(Vector const &, size_t);
 
 		void deleteRow();
 		void deleteRow(size_t);
@@ -60,29 +63,34 @@ struct Matrix {
 
 		void swap(Matrix &);
 
+		void randomize();
+
 		// Math methods
 		Matrix operator*(Matrix const &) const;
 		Matrix operator*(double) const;
-		Matrix operator*(Vector &) const;
+		Vector operator*(Vector const &) const;
 
-		Matrix operator/(Matrix &) const;
+		Matrix operator/(Matrix const &) const;
 		Matrix operator/(double) const;
-		Matrix operator/(Vector &) const;
 
-		Matrix operator+(Matrix &) const;
+		Matrix operator+(Matrix const &) const;
 		Matrix operator+(double) const;
 
-		Matrix operator-(Matrix &) const;
+		Matrix operator-(Matrix const &) const;
 		Matrix operator-(double) const;
 
 		Matrix transposed() const;
 
-		double det() const;
-		double complement() const;
-		double minor() const;
+		double det() const;	// accurate way O(n!)
+		double complement(size_t, size_t) const;
+		double minor(size_t, size_t) const;
 		Matrix minorMatrix(size_t, size_t) const;
 
-		double fastDet() const;
+		double fastDet() const;	// fast way O(n)
+
+		Matrix inverted() const;
+
+		Vector crossProduct() const; // calculates cross product by rows of the matrix
 };
 
 

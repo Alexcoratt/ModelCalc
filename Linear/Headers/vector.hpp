@@ -10,6 +10,7 @@
 
 #include <cctype>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -37,9 +38,9 @@ struct Vector {
 		double & get(size_t);
 		double get(size_t) const;
 
-		size_t const getSize() const;
+		size_t getSize() const;
 
-		stringstream toSStream() const;
+		string toString() const;
 
 		// Setting
 		void swap(Vector &);
@@ -51,9 +52,9 @@ struct Vector {
 		Vector operator+(Vector const &) const;
 		Vector operator-(Vector const &) const;
 
-		Vector crossProduct(Vector const &) const;
-
 		double length() const;
+
+		double sum() const;
 };
 
 

@@ -16,30 +16,19 @@ using namespace std;
 
 
 int main() {
-	size_t size = 10;
-	Vector nums(size);
-	nums.get(0) = 10;
-	cout << nums.toSStream().str() << endl;
+	size_t size = 2;
+	Matrix mx = Matrix(size, size + 1);
+	//mx.randomize();
 
-	nums.resize(3);
-	size = nums.getSize();
-	nums.get(1) = -2;
-	cout << nums.toSStream().str() << endl;
+	mx.get(0, 0) = 1;
+	mx.get(0, 1) = 0;
+	mx.get(0, 2) = 0;
 
-	cout << endl;
+	mx.get(1, 0) = 0;
+	mx.get(1, 1) = 1;
+	mx.get(1, 2) = 0;
 
-	Matrix mx(3, 3);
-	cout << mx.toSStream().str() << endl << endl;
-
-	mx.get(1, 1) = -2.3;
-	cout << mx.toSStream().str() << endl << endl;
-
-	mx.insertRow(nums); // @suppress("Ambiguous problem")
-	cout << mx.toSStream().str() << endl << endl;
-
-	mx.deleteRow(2); // @suppress("Ambiguous problem")
-	mx.deleteCol(1);
-	cout << mx.toSStream().str() << endl << endl;
+	cout << mx.crossProduct().toString() << endl;
 
 	return 0;
 }
