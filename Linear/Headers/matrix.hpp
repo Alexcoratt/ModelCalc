@@ -24,6 +24,7 @@ struct Matrix {
 
 	public:
 		// Constructors
+		Matrix();
 		Matrix(size_t, size_t);
 		// Destructor
 		~Matrix();

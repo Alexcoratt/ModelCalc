@@ -4,15 +4,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Linear/Sources/linreg.cpp \
 ../Linear/Sources/matrix.cpp \
+../Linear/Sources/polynome.cpp \
 ../Linear/Sources/vector.cpp 
 
 CPP_DEPS += \
+./Linear/Sources/linreg.d \
 ./Linear/Sources/matrix.d \
+./Linear/Sources/polynome.d \
 ./Linear/Sources/vector.d 
 
 OBJS += \
+./Linear/Sources/linreg.o \
 ./Linear/Sources/matrix.o \
+./Linear/Sources/polynome.o \
 ./Linear/Sources/vector.o 
 
 
@@ -28,7 +34,7 @@ Linear/Sources/%.o: ../Linear/Sources/%.cpp Linear/Sources/subdir.mk
 clean: clean-Linear-2f-Sources
 
 clean-Linear-2f-Sources:
-	-$(RM) ./Linear/Sources/matrix.d ./Linear/Sources/matrix.o ./Linear/Sources/vector.d ./Linear/Sources/vector.o
+	-$(RM) ./Linear/Sources/linreg.d ./Linear/Sources/linreg.o ./Linear/Sources/matrix.d ./Linear/Sources/matrix.o ./Linear/Sources/polynome.d ./Linear/Sources/polynome.o ./Linear/Sources/vector.d ./Linear/Sources/vector.o
 
 .PHONY: clean-Linear-2f-Sources
 

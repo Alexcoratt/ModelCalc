@@ -14,6 +14,7 @@
 using namespace std;
 
 // Constructor
+Matrix::Matrix() : height_(0), width_(0), values_(0) {}
 Matrix::Matrix(size_t height, size_t width) :
 		height_(height), width_(width), values_(new double[height_ * width_]) {
 	size_t size = width * height;
