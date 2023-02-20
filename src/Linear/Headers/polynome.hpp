@@ -9,6 +9,7 @@
 #define HEADERS_POLYNOME_HPP_
 
 #include "vector.hpp"
+#include "matrix.hpp"
 #include <string>
 
 using namespace std;
@@ -33,6 +34,8 @@ struct Polynome {
 
 		// Math
 		double calculate(double) const;
+
+		void interpolate(Matrix mx);
 };
 
 

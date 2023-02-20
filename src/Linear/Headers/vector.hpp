@@ -22,7 +22,7 @@ struct Vector {
 
 	public:
 		// Constructors
-		explicit Vector(size_t);
+		explicit Vector(size_t = 0);
 		Vector(size_t, double *);
 
 		// Copying
