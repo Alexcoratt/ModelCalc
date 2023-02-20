@@ -24,13 +24,13 @@ Vector::Vector(size_t size) : size_(size), values_(new double[size]) {
 Vector::Vector(size_t size, double * values) : size_(size), values_(values) {}
 
 // Copying
-Vector::Vector(Vector & other) : size_(other.size_), values_(new double[size_]){
+Vector::Vector(Vector const & other) : size_(other.size_), values_(new double[size_]){
 	for (size_t i = 0; i < size_; i++)
 		values_[i] = other.values_[i];
 }
 
 // Assigning
-Vector & Vector::operator=(Vector & other) {
+Vector & Vector::operator=(Vector const & other) {
 	if (this != &other) {
 		Vector tmp(other);
 		swap(tmp);

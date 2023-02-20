@@ -26,10 +26,10 @@ struct Vector {
 		Vector(size_t, double *);
 
 		// Copying
-		Vector(Vector &);
+		Vector(Vector const &);
 
 		// Assigning
-		Vector & operator=(Vector &);
+		Vector & operator=(Vector const &);
 
 		// Destructor
 		~Vector();
