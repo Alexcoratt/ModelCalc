@@ -2,22 +2,19 @@
 #Author Alexander Smirnov
 
 HOME=/run/media/alexsm/LinuxFiles/Workshop/Projects/ModelCalc
-HEADS=$HOME/src/Linear/Headers
-SRCS=$HOME/src/Linear/Sources
-MAIN=$HOME/src/MxAnalyse.cpp
+SRC=$HOME/src
+HEADS=$SRC/Linear/Headers
+SRCS=$SRC/Linear/Sources
+MAIN=MxAnalyse.cpp
 TESTS=$HOME/tests
 OUT=$HOME/outMxAn
-RES=ModelCalcMxAn
+RES_NAME=ModelCalcMxAn
 
 rm -rf $OUT
 mkdir $OUT
 
-cp -al $HEADS/. $OUT/
 cp -al $SRCS/. $OUT/
-cp -l $MAIN $OUT/
+cp -l $SRC/$MAIN $OUT/
+clang++ --std=c++11 $OUT/* -I $HEADS
 
-g++ $OUT/* -o $OUT/$RES
-
-rm $OUT/*.?pp
-
-cp -al $TESTS/. $OUT/
+#cp -al $TESTS/. $OUT/
